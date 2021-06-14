@@ -1,0 +1,36 @@
+# local configs
+example:
+  datasource:
+    url: test
+    username: root
+    password: root
+spring:
+  datasource:
+    url: ${example.datasource.url}
+    username: ${example.datasource.username}
+    password: ${example.datasource.password}
+---
+# dev configs
+# passing 'dev' as env variable SPRING_PROFILES_ACTIVE - look in example-pod.yaml
+# it will load dev configs
+spring:
+  config:
+    activate:
+      on-profile: dev 
+  datasource:
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
+---
+# stg configs
+# passing 'stg' as env variable SPRING_PROFILES_ACTIVE - look in example-pod.yaml
+# it will load stg configs
+spring:
+  config:
+    activate:
+      on-profile: stg
+  datasource:
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
+
